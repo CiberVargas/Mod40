@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Registros - Modalidad 40</title>
+</head>
+<body>
+  <h1>Registros</h1>
+  <p><a href="{{ url_for('index') }}">Volver</a> | <a href="{{ url_for('export_csv') }}">Exportar CSV</a></p>
+  <table border="1" cellpadding="4" cellspacing="0">
+    <thead>
+      <tr>
+        <th>ID</th><th>Nombre</th><th>NSS</th><th>CURP</th><th>Fecha Nac.</th><th>Semanas</th><th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in persons %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.nss }}</td>
+        <td>{{ p.curp }}</td>
+        <td>{{ p.fecha_nacimiento.strftime('%d/%m/%Y') if p.fecha_nacimiento else '' }}</td>
+        <td>{{ p.semanas_cotizadas or '' }}</td>
+        <td>
+          <a href="{{ url_for('edit', id=p.id) }}">Editar</a>
+          <form action="{{ url_for('delete', id=p.id) }}" method="post" style="display:inline" onsubmit="return confirm('Eliminar registro?');">
+            <button type="submit">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

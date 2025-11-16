@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Editar Registro</title>
+</head>
+<body>
+  <h1>Editar Registro</h1>
+  <form method="post">
+    <label>Nombre: <input name="nombre" value="{{ p.nombre }}"></label><br>
+    <label>NSS: <input name="nss" value="{{ p.nss }}"></label><br>
+    <label>CURP: <input name="curp" value="{{ p.curp }}"></label><br>
+    <label>Fecha Nacimiento (dd/mm/aaaa): <input name="fecha_nacimiento" value="{{ p.fecha_nacimiento.strftime('%d/%m/%Y') if p.fecha_nacimiento else '' }}"></label><br>
+    <label>Fecha Ultima Cotizacion: <input name="fecha_ultima_cotizacion" value="{{ p.fecha_ultima_cotizacion.strftime('%d/%m/%Y') if p.fecha_ultima_cotizacion else '' }}"></label><br>
+    <label>Fecha Primera Cotizacion: <input name="fecha_primera_cotizacion" value="{{ p.fecha_primera_cotizacion.strftime('%d/%m/%Y') if p.fecha_primera_cotizacion else '' }}"></label><br>
+    <label>Semanas Cotizadas: <input name="semanas_cotizadas" value="{{ p.semanas_cotizadas }}"></label><br>
+    <label>Edad Retiro: <input name="edad_retiro" value="{{ p.edad_retiro }}"></label><br>
+    <label>Edad Actual: <input name="edad_actual" value="{{ p.edad_actual }}"></label><br>
+    <label>Conyuge: <input type="checkbox" name="conyuge" {% if p.conyuge %}checked{% endif %}></label><br>
+    <label>Hijos Menores: <input name="hijos_menores" value="{{ p.hijos_menores }}"></label><br>
+    <label>Padres Dependientes: <input name="padres_dependientes" value="{{ p.padres_dependientes }}"></label><br>
+    <label>UMA Valor: <input name="uma_valor" value="{{ p.uma_valor }}"></label><br>
+    <label>Salario Minimo DF: <input name="salario_minimo_df" value="{{ p.salario_minimo_df }}"></label><br>
+    <label>Sueldo diario topado 25 UMAs: <input name="sueldo_diario_topado_25_umas" value="{{ p.sueldo_diario_topado_25_umas }}"></label><br>
+    <label>Fecha Actual: <input name="fecha_actual" value="{{ p.fecha_actual.strftime('%d/%m/%Y') if p.fecha_actual else '' }}"></label><br>
+    <label>Ayuda Soledad: <input type="checkbox" name="ayuda_soledad" {% if p.ayuda_soledad %}checked{% endif %}></label><br>
+    <label>Comentarios:<br><textarea name="comentarios" rows="4" cols="50">{{ p.comentarios }}</textarea></label><br>
+    <button type="submit">Guardar</button>
+  </form>
+  <p><a href="{{ url_for('list_persons') }}">Cancelar</a></p>
+</body>
+</html>
